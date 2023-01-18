@@ -1,5 +1,5 @@
 <style>
-	:root {
+	:global(:root) {
 		--primary-color: #ffffff,
 		--secondary-color: #000000,
 		--tertiary-color: #9747ff,
