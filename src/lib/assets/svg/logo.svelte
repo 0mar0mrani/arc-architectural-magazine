@@ -13,10 +13,3 @@
 		</clipPath>
 	</defs>
 </svg>
-
-<style>
-	svg {
-		width: 100%;
-		height: auto;
-	}
-</style>
