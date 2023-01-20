@@ -1,9 +1,9 @@
 <style>
 	:global(:root) {
-		--primary-color: #ffffff,
-		--secondary-color: #000000,
-		--tertiary-color: #9747ff,
-		--quaternary-color: #e7e7e7,
+		--primary-color: #ffffff;
+		--secondary-color: #000000;
+		--tertiary-color: #9747ff;
+		--quaternary-color: #e7e7e7;
 
 		--font-body-text: 2rem 'Times New Roman';
 		--font-body-text-uppercase: 2rem Uppercase 'Times New Roman';
