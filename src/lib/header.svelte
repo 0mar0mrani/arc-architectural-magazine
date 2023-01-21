@@ -1,13 +1,23 @@
 <script>
+	import { onMount } from 'svelte';
+
 	import Logo from './assets/svg/Logo.svelte';
 	import Menu from './assets/svg/Menu.svelte';
 	import Close from './assets/svg/Close.svelte';
 
 	let isMenuOpen = false;
+	let isSticky = false;
+	let logoElement;
+	let headerMenuWElement;
+	let headerElement;
 
 	const color1 = '#000';
 	const color2 = '#9747ff';
 	let color = '#000';
+
+	onMount(() => {
+		handleWindowScroll();
+	});
 
 	function handleMenuButtonClick() {
 		isMenuOpen = !isMenuOpen;
@@ -20,14 +30,31 @@
 			color = color1;
 		}
 	}
+
+	function handleWindowScroll() {
+		const rect = logoElement.getBoundingClientRect();
+		const scroll = window.scrollY; 
+		const logoHeightPlusMargin = rect.top + scroll + 10;
+		const headerMenuHeight = headerMenuWElement.offsetHeight;
+		
+		if (scroll > logoHeightPlusMargin) {
+			isSticky = true;
+			headerElement.style.marginBottom = `${headerMenuHeight}px`
+		} else {
+			isSticky = false;
+			headerElement.style.marginBottom = '0px'
+		}
+	}
 </script>
 
-<header class="header">
-	<a href="/" on:mouseenter={changeColor} on:mouseleave={changeColor}>
+<svelte:window on:scroll={handleWindowScroll}/>
+
+<header class="header" bind:this={headerElement}>
+	<a href="/" on:mouseenter={changeColor} on:mouseleave={changeColor} bind:this={logoElement} class="header__logo">
 		<Logo {color} />
 	</a>
 
-	<div class="header__menu">
+	<div class={`header__menu ${isSticky ? 'header__menu--fixed' : ''}`} bind:this={headerMenuWElement}>
 		<h1 class="header__name">Arc Architectural</h1>
 
 		<button class="header__menu-button" on:click={handleMenuButtonClick}>
@@ -86,8 +113,15 @@
 		justify-content: space-between;
 		align-items: center;
 		position: relative;
-		margin-top: 2rem;
-		margin-bottom: 4rem;
+		padding: 2rem 0;
+		background-color: #fff;
+		transform: scale(1.001);
+	}
+	
+	.header__menu--fixed {
+		position: fixed;
+		top: 0;
+		width: calc(100% - 2rem);
 	}
 
 	.header__name {
@@ -100,7 +134,7 @@
 
 	.header__navigation {
 		position: absolute;
-		top: 130%;
+		top: 100%;
 		left: 0;
 		width: 100%;
 		border-top: solid 1px #000;

@@ -14,5 +14,6 @@
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
 		margin: 1rem;
+		position: relative;
 	}
 </style>
