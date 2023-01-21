@@ -10,28 +10,19 @@
 	let headerMenuWElement;
 	let headerElement;
 
-	const color1 = '#000';
-	const color2 = '#9747ff';
-	let color = '#000';
-
 	onMount(() => {
-		handleWindowScroll();
-		color = '#000';
+		setIsSticky();
 	});
 
 	function handleMenuButtonClick() {
 		isMenuOpen = !isMenuOpen;
 	}
 
-	function changeColor() {
-		if (color === color1) {
-			color = color2;
-		} else {
-			color = color1;
-		}
+	function handleWindowScroll() {
+		setIsSticky();
 	}
 
-	function handleWindowScroll() {
+	function setIsSticky() {
 		const rect = logoElement.getBoundingClientRect();
 		const scroll = window.scrollY; 
 		const logoHeightPlusMargin = rect.top + scroll + 10;
@@ -50,8 +41,8 @@
 <svelte:window on:scroll={handleWindowScroll}/>
 
 <header class="header" bind:this={headerElement}>
-	<a href="/" on:mouseenter={changeColor} on:mouseleave={changeColor} bind:this={logoElement} class="header__logo">
-		<Logo {color} />
+	<a href="/" bind:this={logoElement} >
+		<Logo/>
 	</a>
 
 	<div class={`header__menu ${isSticky ? 'header__menu--fixed' : ''}`} bind:this={headerMenuWElement}>
@@ -116,6 +107,10 @@
 		padding: 2rem 0;
 		background-color: #fff;
 		transform: scale(1.001);
+	}
+
+	.header__logo:hover {
+		fill: #9747ff;
 	}
 	
 	.header__menu--fixed {
