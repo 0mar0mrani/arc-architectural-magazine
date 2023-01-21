@@ -1,5 +1,8 @@
 <script>
 	import { onMount } from 'svelte';
+
+	import Events from '$lib/Events.svelte'
+
 	import Logo from './assets/svg/Logo.svelte';
 	import Menu from './assets/svg/Menu.svelte';
 	import Close from './assets/svg/Close.svelte';
@@ -46,15 +49,17 @@
 	</a>
 
 	<div class={`header__menu ${isSticky ? 'header__menu--fixed' : ''}`} bind:this={headerMenuWElement}>
-		<h1 class="header__name">Arc Architectural</h1>
-
-		<button class="header__menu-button" on:click={handleMenuButtonClick}>
-			{#if isMenuOpen}
-					<Close/>
+		<div class="header__menu-name-button-container">
+			<h1 class="header__name">Arc Architectural</h1>
+			
+			<button class="header__menu-button" on:click={handleMenuButtonClick}>
+				{#if isMenuOpen}
+				<Close/>
 				{:else}
-					<Menu/>
-			{/if}
-		</button>
+				<Menu/>
+				{/if}
+			</button>
+		</div>
 
 		{#if isMenuOpen}
 			<nav class="header__navigation">
@@ -90,6 +95,8 @@
 					</li>
 				</ul>
 			</nav>	
+
+			<Events/>
 		{/if}
 	</div>
 </header>
@@ -97,16 +104,22 @@
 <style>
 	.header {
 		grid-column: 1 / 13;
+		z-index: 10;
 	}
 
 	.header__menu {
 		display: flex;
+		flex-direction: column;
 		justify-content: space-between;
-		align-items: center;
 		position: relative;
 		padding: 2rem 0;
 		background-color: #fff;
 		transform: scale(1.001);
+	}
+
+	.header__menu-name-button-container {
+		display: flex;
+		justify-content: space-between;
 	}
 
 	.header__logo:hover {
@@ -130,9 +143,9 @@
 	}
 
 	.header__navigation {
-		position: absolute;
+		/* position: absolute;
 		top: 100%;
-		left: 0;
+		left: 0; */
 		width: 100%;
 		border-top: solid 1px #000;
 		border-bottom: solid 1px #000;
