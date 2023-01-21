@@ -1,6 +1,5 @@
 <script>
 	import { onMount } from 'svelte';
-
 	import Logo from './assets/svg/Logo.svelte';
 	import Menu from './assets/svg/Menu.svelte';
 	import Close from './assets/svg/Close.svelte';
