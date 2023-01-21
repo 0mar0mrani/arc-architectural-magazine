@@ -16,6 +16,7 @@
 
 	onMount(() => {
 		handleWindowScroll();
+		color = '#000';
 	});
 
 	function handleMenuButtonClick() {
@@ -128,6 +129,8 @@
 	}
 
 	.header__menu-button {
+		width: 5rem;
+		height: 5rem;
 		flex-shrink: 0;
 	}
 
