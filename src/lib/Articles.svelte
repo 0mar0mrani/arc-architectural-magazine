@@ -33,7 +33,7 @@
 		{
 			header: 'Radiowaves Collective',
 			title: 'Mothering a Movement: Notes from India’s Longest Anti-Nuclear Struggle',
-			image: '/src/lib/assets/images/alan-rostovtev-article.png',
+			image: '/src/lib/assets/images/alan-rostovtev-article.jpg',
 			alt: 'Glass building',
 			link: '/article',
 		},
