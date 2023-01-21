@@ -3,9 +3,10 @@
 	export let title = '';
 	export let src = '';
 	export let alt = '';
+	export let href = '';
 </script>
 
-<div class="article-overview">
+<a class="article-overview" {href}>
 	<div class="article-overview__image">
 		<img {src} {alt}>
 	</div>
@@ -14,7 +15,7 @@
 		<p class="article-overview__header">{header}</p>
 		<p class="article-overview__title">{title}</p>
 	</div>
-</div>
+</a>
 
 <style>
 	.article-overview {
