@@ -47,7 +47,7 @@
 		{
 			header: 'AA editorial',
 			title: 'The Avant-Garde Museum',
-			image: 'https://i.postimg.cc/Hk4b3xn5/refargotohp.jpg',
+			image: 'https://i.postimg.cc/GtWvgTvP/tingfeng-xia.jpg',
 			alt: 'Bridge',
 			link: '/article',
 		},
