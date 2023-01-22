@@ -128,7 +128,7 @@
 
 	.header__main-container {
 		overflow-y: scroll;
-		max-height: calc(100dvh - 7rem);
+		max-height: calc(100dvh - 9rem);
 	}
 	
 	.header__menu--fixed {

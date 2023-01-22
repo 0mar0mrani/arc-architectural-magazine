@@ -62,7 +62,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
-		margin-top: 2rem;
+		margin: 2rem 0;
 		font: var(--font-small-text-uppercase);
 		text-transform: uppercase;
 	}
