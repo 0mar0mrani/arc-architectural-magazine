@@ -65,7 +65,6 @@
 		margin-top: 2rem;
 		font: var(--font-small-text-uppercase);
 		text-transform: uppercase;
-		overflow-y: scroll;
 	}
 
 	.header__event-title {

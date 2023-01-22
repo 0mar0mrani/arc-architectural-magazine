@@ -61,43 +61,45 @@
 			</button>
 		</div>
 
-		{#if isMenuOpen}
-			<nav class="header__navigation">
-				<ul>
-					<li>
-						<a href="#">
-							Announcements
-						</a>
-					</li>
+		<div class="header__main-container">
+			{#if isMenuOpen}
+				<nav class="header__navigation">
+					<ul>
+						<li>
+							<a href="#">
+								Announcements
+							</a>
+						</li>
 
-					<li>
-						<a href="#">
-							Journal
-						</a>
-					</li>
+						<li>
+							<a href="#">
+								Journal
+							</a>
+						</li>
 
-					<li>
-						<a href="">
-							Reviews
-						</a>
-					</li>
+						<li>
+							<a href="">
+								Reviews
+							</a>
+						</li>
 
-					<li>
-						<a href="">
-							Books
-						</a>
-					</li>
+						<li>
+							<a href="">
+								Books
+							</a>
+						</li>
 
-					<li>
-						<a href="">
-							Information
-						</a>
-					</li>
-				</ul>
-			</nav>	
+						<li>
+							<a href="">
+								Information
+							</a>
+						</li>
+					</ul>
+				</nav>	
 
-			<Events/>
-		{/if}
+				<Events/>
+			{/if}
+		</div>
 	</div>
 </header>
 
@@ -112,7 +114,6 @@
 		flex-direction: column;
 		justify-content: space-between;
 		position: relative;
-		padding: 2rem 0;
 		background-color: #fff;
 		transform: scale(1.001);
 	}
@@ -120,10 +121,13 @@
 	.header__menu-name-button-container {
 		display: flex;
 		justify-content: space-between;
+		padding: 2rem 0;
+		height: 9rem;
 	}
 
-	.header__logo:hover {
-		fill: #9747ff;
+	.header__main-container {
+		overflow-y: scroll;
+		max-height: calc(100dvh - 7rem);
 	}
 	
 	.header__menu--fixed {
@@ -143,9 +147,6 @@
 	}
 
 	.header__navigation {
-		/* position: absolute;
-		top: 100%;
-		left: 0; */
 		width: 100%;
 		border-top: solid 1px #000;
 		border-bottom: solid 1px #000;
