@@ -1,4 +1,4 @@
-<style>
+<style global>
 	:global(*) {
 		padding: 0;
 		margin: 0;
@@ -23,5 +23,11 @@
 	:global(a) {
 		text-decoration: none;
 		color: inherit;
+	}
+
+	:global(img) {
+		width: 100%;
+		height: auto;
+		display: block;
 	}
 </style>
