@@ -1,6 +1,6 @@
 <script>
 	import '../global/css/main.svelte'
-	import Header from '../lib/Header.svelte';
+	import Header from '/src/lib/Header.svelte';
 </script>
 
 <div class="layout">
