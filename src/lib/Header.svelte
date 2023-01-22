@@ -127,8 +127,8 @@
 	.header__menu-name-button-container {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		padding: 2rem 0;
-		height: 9rem;
 		border-bottom: solid 1px #000;
 	}
 
@@ -165,5 +165,33 @@
 		background-color: #fff;
 		padding: 2rem 0;
 		font-size: 4rem;
+	}
+
+	@media screen and (max-width: 450px) {
+		.header__name {
+			font-size: 3rem;
+		}
+
+		.header__menu-button {
+			width: 4rem;
+			height: 4rem;
+		}
+	}
+
+	@media screen and (max-width: 350px) {
+		.header__name {
+			font-size: 2.5rem;
+		}
+	}
+
+	@media screen and (max-width: 290px) {
+		.header__name {
+			font-size: 2rem;
+		}
+
+		.header__menu-button {
+			width: 3.5rem;
+			height: 3.5rem;
+		}
 	}
 </style>
