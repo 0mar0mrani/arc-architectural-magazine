@@ -5,5 +5,7 @@
 
 	:global(body) {
 		font-family: 'Times New Roman', Times, serif;
+		background-color: var(--primary-color);
+		color: var(--secondary-color);
 	}
 </style>

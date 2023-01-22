@@ -2,4 +2,10 @@
 	<path d="M30.5 1.5L2 30" stroke="black" stroke-width="4"/>
 	<path d="M2 1.5L30.5 30" stroke="black" stroke-width="4"/>
 </svg>
+
+<style>
+	path {
+		stroke: var(--secondary-color);
+	}
+</style>
 	

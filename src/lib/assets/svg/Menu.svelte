@@ -3,3 +3,9 @@
 	<path d="M0 14H44" stroke="black" stroke-width="4"/>
 	<path d="M0 26H44" stroke="black" stroke-width="4"/>
 </svg>
+
+<style>
+	path {
+		stroke: var(--secondary-color);
+	}
+</style>

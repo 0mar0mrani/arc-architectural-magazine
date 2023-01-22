@@ -120,7 +120,6 @@
 		flex-direction: column;
 		justify-content: space-between;
 		position: relative;
-		background-color: #fff;
 		transform: scale(1.001);
 	}
 
@@ -129,12 +128,14 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 2rem 0;
-		border-bottom: solid 1px #000;
+		border-bottom: solid 1px var(--secondary-color);
+		background-color: var(--primary-color);
 	}
 
 	.header__main-container {
 		overflow-y: scroll;
 		max-height: calc(100dvh - 9rem);
+		background-color: var(--primary-color);
 	}
 	
 	.header__menu--fixed {
@@ -156,13 +157,13 @@
 	.header__about {
 		font: var(--font-body-text);
 		padding: 2rem 0;
-		border-bottom: solid 1px #000;
+		border-bottom: solid 1px var(--secondary-color);
 	}
 
 	.header__navigation {
 		width: 100%;
-		border-bottom: solid 1px #000;
-		background-color: #fff;
+		border-bottom: solid 1px var(--secondary-color);
+		background-color: var(--primary-color);
 		padding: 2rem 0;
 		font-size: 4rem;
 	}
