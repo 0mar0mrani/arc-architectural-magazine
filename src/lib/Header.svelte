@@ -123,6 +123,7 @@
 		justify-content: space-between;
 		padding: 2rem 0;
 		height: 9rem;
+		border-bottom: solid 1px #000;
 	}
 
 	.header__main-container {
@@ -148,7 +149,6 @@
 
 	.header__navigation {
 		width: 100%;
-		border-top: solid 1px #000;
 		border-bottom: solid 1px #000;
 		background-color: #fff;
 		padding: 2rem 0;
