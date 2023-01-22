@@ -95,7 +95,13 @@
 							</a>
 						</li>
 					</ul>
-				</nav>	
+				</nav>
+
+				<div class="header__about">
+					<p>
+						AA was founded in 1847 with the aspiration of ‘promoting and affording facilities for the study of architecture for the public benefit’. Likeness it them very firmament without created also bring a one Whose she'd in. Sea unto created every together together. For that wherein. Kind sea earth them was place. Sixth signs saying after replenish multiply. Female every unto beginning appear moving tree the bearing own.
+					</p>
+				</div>
 
 				<Events/>
 			{/if}
@@ -145,6 +151,12 @@
 		width: 5rem;
 		height: 5rem;
 		flex-shrink: 0;
+	}
+	
+	.header__about {
+		font: var(--font-body-text);
+		padding: 2rem 0;
+		border-bottom: solid 1px #000;
 	}
 
 	.header__navigation {
