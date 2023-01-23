@@ -15,6 +15,7 @@
 
 	onMount(() => {
 		setIsSticky();
+		setDesktopHeader();
 	});
 
 	function handleMenuButtonClick() {
@@ -23,6 +24,21 @@
 
 	function handleWindowScroll() {
 		setIsSticky();
+	}
+
+	function handleWindowResize() {
+		setDesktopHeader();
+	}
+
+	function setDesktopHeader() {
+		const screenWidth = window.innerWidth;
+		const desktop = 1000;
+
+		if (screenWidth >= desktop) {
+			isMenuOpen = true;
+		} else {
+			isMenuOpen = false;
+		}
 	}
 
 	function setIsSticky() {
@@ -41,7 +57,7 @@
 	}
 </script>
 
-<svelte:window on:scroll={handleWindowScroll}/>
+<svelte:window on:scroll={handleWindowScroll} on:resize={handleWindowResize}/>
 
 <header class="header" bind:this={headerElement}>
 	<a href="/" bind:this={logoElement} >
@@ -193,6 +209,28 @@
 		.header__menu-button {
 			width: 3.5rem;
 			height: 3.5rem;
+		}
+	}
+
+	@media screen and (min-width: 1000px) {
+		.header {
+			grid-column: 1 / 4;
+			height: 100dvh;
+			overflow-y: scroll;
+		}
+
+		.header__menu-button {
+			display: none;
+		}
+
+		.header__menu--fixed {
+			position: relative;
+			width: unset;
+		}
+
+		.header__main-container {
+			overflow-y: unset;
+			max-height: unset;
 		}
 	}
 </style>
