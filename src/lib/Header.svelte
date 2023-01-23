@@ -217,6 +217,7 @@
 			grid-column: 1 / 4;
 			height: 100dvh;
 			overflow-y: scroll;
+			padding-top: 1rem;
 		}
 
 		.header__menu-button {

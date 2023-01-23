@@ -17,4 +17,11 @@
 		position: relative;
 		column-gap: 1rem;
 	}
+
+	@media only screen and (min-width: 1000px) {
+		.layout {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
 </style>
