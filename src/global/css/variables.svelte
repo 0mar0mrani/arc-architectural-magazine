@@ -1,6 +1,6 @@
 <style>
 	:global(:root) {
-		--primary-color: var(--primary-color);
+		--primary-color: #fff;
 		--secondary-color: #000000;
 		--tertiary-color: #9747ff;
 		--quaternary-color: #e7e7e7;
