@@ -34,8 +34,8 @@
 	}
 
 	.article-overview__card {
-		color: var(--secondary-color);
-		background-color: var(--primary-color);
+		color: var(--primary-color);
+		background-color: var(--secondary-color);
 		padding: 1.6rem 1.6rem 5rem 1.6rem;
 	}
 
