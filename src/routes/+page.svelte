@@ -13,4 +13,12 @@
 		flex-direction: column;
 		gap: 1rem;
 	}
+
+	@media only screen and (min-width: 1000px) {
+		.articles-container {
+			grid-column: 4 / 13;
+			display: grid;
+			grid-template-columns: repeat(9, 1fr);
+		}
+	}
 </style>
