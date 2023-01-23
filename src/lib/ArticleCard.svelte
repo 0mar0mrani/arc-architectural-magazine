@@ -8,14 +8,14 @@
 </script>
 
 <a class="article-overview {gridClass}" {href}>
-	<div class="article-overview__image">
+	<figure class="article-overview__image">
 		<img {src} {alt}>
-	</div>
 
-	<div class="article-overview__card">
+		<figcaption class="article-overview__card">
 		<p class="article-overview__header">{header}</p>
 		<p class="article-overview__title">{title}</p>
-	</div>
+		</figcaption>
+	</figure>
 </a>
 
 <style>
