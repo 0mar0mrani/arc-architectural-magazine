@@ -8,14 +8,14 @@
 </script>
 
 <a class="article-overview {gridClass}" {href}>
-	<div class="article-overview__image">
+	<figure class="article-overview__image">
 		<img {src} {alt}>
-	</div>
 
-	<div class="article-overview__card">
-		<p class="article-overview__header">{header}</p>
-		<p class="article-overview__title">{title}</p>
-	</div>
+		<figcaption class="article-overview__card">
+			<p class="article-overview__header">{header}</p>
+			<p class="article-overview__title">{title}</p>
+		</figcaption>
+	</figure>
 </a>
 
 <style>
@@ -66,8 +66,21 @@
 			grid-column: span 5;
 		}
 
+		.article-overview__image {
+			position: relative;
+		}
+
 		.article-overview__card {
-			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+		}
+
+		.article-overview__card:hover {
+			opacity: 1;
 		}
 
 		.order1 {
