@@ -8,6 +8,7 @@
 			image: 'https://i.postimg.cc/B6v5j0qF/alan-rostovtev.jpg',
 			alt: 'White wall',
 			link: '/article',
+			gridClass: 'article-overview__full-width order1',
 		},
 		{
 			header: 'ArkDes',
@@ -15,6 +16,7 @@
 			image: 'https://i.postimg.cc/9XKPQKs4/mohammad-mohsen-rohani.jpg',
 			alt: 'White building',
 			link: '/article',
+			gridClass: 'article-overview__span4 order2',
 		},
 		{
 			header: 'Sabu Kohso',
@@ -22,6 +24,7 @@
 			image: 'https://i.postimg.cc/FHQjjcrN/albert-stoynov.jpg',
 			alt: 'Angled building',
 			link: '/article',
+			gridClass: 'article-overview__span5x2 order1',
 		},
 		{
 			header: 'Bauhaus Dessau Foundation',
@@ -29,13 +32,15 @@
 			image: 'https://i.postimg.cc/HxPw5hxh/brice-cooper.jpg',
 			alt: 'Building with bridge',
 			link: '/article',
+			gridClass: 'article-overview__span4',
 		},
 		{
 			header: 'Radiowaves Collective',
 			title: 'Mothering a Movement: Notes from India’s Longest Anti-Nuclear Struggle',
-			image: 'https://i.postimg.cc/jjcQq5rK/alan-rostovtev-article.jpg',
+			image: 'https://i.postimg.cc/gkhVX4Pg/op23.jpg',
 			alt: 'Glass building',
 			link: '/article',
+			gridClass: 'article-overview__full-width',
 		},
 		{
 			header: 'Livia Krohn Miller',
@@ -43,6 +48,7 @@
 			image: 'https://i.postimg.cc/Hk4b3xn5/refargotohp.jpg',
 			alt: 'White building',
 			link: '/article',
+			gridClass: 'article-overview__span5',
 		},
 		{
 			header: 'AA editorial',
@@ -50,6 +56,7 @@
 			image: 'https://i.postimg.cc/GtWvgTvP/tingfeng-xia.jpg',
 			alt: 'Bridge',
 			link: '/article',
+			gridClass: 'article-overview__span4',
 		},
 	]
 </script>
@@ -61,5 +68,6 @@
 		src={article.image}
 		alt={article.alt}
 		href={article.link}
+		gridClass={article.gridClass}
 	/>
 {/each}
