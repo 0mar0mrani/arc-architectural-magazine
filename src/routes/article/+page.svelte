@@ -21,7 +21,7 @@
 		</p>
 	</div>
 
-	<figure class="article__image">
+	<figure class="article__image article__image--secondary">
 		<img src="https://i.postimg.cc/9XKPQKs4/mohammad-mohsen-rohani.jpg" alt="White building">
 
 		<figcaption>
@@ -74,5 +74,53 @@
 
 	.article__paragraphs p:not(:first-child){
 		text-indent: 5.5rem;
+	}
+
+	@media only screen and (min-width: 1000px) {
+		.article__container {
+			display: grid;
+			grid-template-columns: repeat(9, 1fr);
+			gap: 1rem;
+			grid-column: 4 / 13;
+			margin-top: 0;
+			padding: 2rem 0;
+			height: 100dvh;
+			overflow-y: scroll;
+		}
+
+		.article__title,
+		.article__sub-title {
+			grid-column: 2 / span 7;
+		}
+
+		.article__image {
+			display: grid;
+			grid-template-columns: repeat(9, 1fr);
+			grid-column: 1 / span 9;
+		}
+
+		.article__image img {
+			grid-column: 1 / span 9;
+		}
+
+		.article__image figcaption {
+			grid-column: 2 / span 5;
+		}
+
+		.article__paragraphs {
+			margin: 0;
+			grid-column: 2 / span 4;
+		}
+
+		.article__image--secondary {
+			display: grid;
+			grid-template-columns: repeat(7, 1fr);
+			gap: 1fr;
+			grid-column: 2 / span 7;
+		}
+		
+		.article__image--secondary figcaption{
+			grid-column: 1 / span 4;
+		}
 	}
 </style>
