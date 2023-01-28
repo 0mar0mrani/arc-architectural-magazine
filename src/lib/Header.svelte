@@ -82,31 +82,31 @@
 				<nav class="header__navigation">
 					<ul>
 						<li>
-							<a href="#">
+							<a href="/information">
 								Announcements
 							</a>
 						</li>
 
 						<li>
-							<a href="#">
+							<a href="/information">
 								Journal
 							</a>
 						</li>
 
 						<li>
-							<a href="">
+							<a href="/information">
 								Reviews
 							</a>
 						</li>
 
 						<li>
-							<a href="">
+							<a href="/information">
 								Books
 							</a>
 						</li>
 
 						<li>
-							<a href="">
+							<a href="/information">
 								Information
 							</a>
 						</li>
