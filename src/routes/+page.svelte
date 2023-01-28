@@ -20,6 +20,7 @@
 			grid-column: 4 / 13;
 			display: grid;
 			grid-template-columns: repeat(9, 1fr);
+			height: 100vh;
 			height: 100dvh;
 			overflow-y: scroll;
 		}
