@@ -69,7 +69,6 @@
 
 	.article__paragraphs {
 		font: var(--font-body-text);
-		margin: 4rem 0;
 	}
 
 	.article__paragraphs p:not(:first-child){
