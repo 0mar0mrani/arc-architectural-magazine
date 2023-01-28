@@ -1,8 +1,35 @@
+<script>
+	import { onMount } from 'svelte';
+
+	let src;
+	const mobileImage = 'https://i.postimg.cc/5tbSMzTn/alan-rostovtev-information.jpg';
+	const desktopImage = 'https://i.postimg.cc/d3k89jZt/or-hakim.jpg';
+
+	function handleWindowResize() {
+		setImage();
+	}
+
+	function setImage() {
+		if (window.innerWidth < 1000) {
+			src = mobileImage;
+		} else {
+			src = desktopImage;
+		}
+	}
+
+	onMount(() => {
+		setImage();
+	})
+</script>
+
+<svelte:window on:resize={handleWindowResize}/>
+
 <div class="information__container">
 	<h2 class="information__header">Information</h2>
 
 	<div class="information__image">
-		<img src="https://i.postimg.cc/5tbSMzTn/alan-rostovtev-information.jpg" alt="Photo light">
+		<!-- svelte-ignore a11y-img-redundant-alt -->
+		<img {src} alt="Photo-light">
 	</div>
 
 	<h3 class="information__sub-header">
@@ -34,7 +61,7 @@
 <style>
 	.information__container {
 		grid-column: 1 / 13;
-		margin: 4rem 0 2rem 0;
+		margin: 2rem 0;
 		display: flex;
 		flex-direction: column;
 	}
@@ -54,5 +81,32 @@
 
 	.information__paragraphs p:not(:first-child){
 		text-indent: 5.5rem;
+	}
+
+	@media only screen and (min-width: 1000px) {
+		.information__container {
+			display: grid;
+			grid-template-columns: repeat(9, 1fr);
+			gap: 1rem;
+			grid-column: 4 / 13;
+			margin-top: 0;
+			padding: 2rem 0;
+			height: 100dvh;
+			overflow-y: scroll;
+			margin: 0;
+		}
+		
+		.information__header,
+		.information__image {
+			grid-column: 2 / 9;
+		}
+		
+		.information__sub-header {
+			grid-column: 2 / 8;
+		}
+
+		.information__paragraphs {
+			grid-column: 2 / span 4;
+		}
 	}
 </style>
