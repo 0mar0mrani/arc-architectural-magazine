@@ -8,6 +8,7 @@
 		background-color: var(--primary-color);
 		color: var(--secondary-color);
 		font: var(--font-body-text);
+
 	}
 
 	@media screen and (min-width: 480px) {

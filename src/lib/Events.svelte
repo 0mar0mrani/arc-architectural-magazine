@@ -50,8 +50,8 @@
 <div class="header__events">	
 	{#each events as event}
 		<div class="header__event">
-			<p>{event.category}</p>
-			<p>{event.date}</p>
+			<p class="header__event-category">{event.category}</p>
+			<p class="header__event-date">{event.date}</p>
 			<p class="header__event-title">{event.title}</p>
 		</div>
 	{/each}
@@ -63,11 +63,11 @@
 		flex-direction: column;
 		gap: 2rem;
 		margin: 2rem 0;
-		font: var(--font-small-text-uppercase);
-		text-transform: uppercase;
 	}
 
-	.header__event-title {
-		font: var(--font-body-text);
+	.header__event-category,
+	.header__event-date {
+		font: var(--font-small-text);
+		text-transform: uppercase;
 	}
 </style>
