@@ -144,7 +144,6 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 2rem 0;
-		border-bottom: solid 1px var(--secondary-color);
 		background-color: var(--primary-color);
 	}
 
@@ -175,6 +174,7 @@
 	.header__about {
 		font: var(--font-body-text);
 		padding: 2rem 0;
+		border-top: solid 1px var(--secondary-color);
 		border-bottom: solid 1px var(--secondary-color);
 	}
 
