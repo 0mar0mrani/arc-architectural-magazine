@@ -13,15 +13,17 @@
 	.layout {
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
-		margin: 1rem;
+		padding: 1rem;
 		position: relative;
 		column-gap: 1rem;
+		max-width: 170rem;
+		margin: 0 auto;
 	}
 
-	@media only screen and (min-width: 1000px) {
+	@media only screen and (min-width: 800px) {
 		.layout {
-			margin-top: 0;
-			margin-bottom: 0;
+			padding-top: 0;
+			padding-bottom: 0;
 		}
 	}
 </style>

@@ -32,7 +32,7 @@
 
 	function setDesktopHeader() {
 		const screenWidth = window.innerWidth;
-		const desktop = 1000;
+		const desktop = 800;
 
 		if (screenWidth >= desktop) {
 			isMenuOpen = true;
@@ -70,15 +70,21 @@
 			
 			<button class="header__menu-button" on:click={handleMenuButtonClick}>
 				{#if isMenuOpen}
-				<Close/>
+					<Close/>
 				{:else}
-				<Menu/>
+					<Menu/>
 				{/if}
 			</button>
 		</div>
 
 		<div class="header__main-container">
 			{#if isMenuOpen}
+				<div class="header__about">
+					<p>
+						AA was founded in 1847 with the aspiration of ‘promoting and affording facilities for the study of architecture for the public benefit’. Likeness it them very firmament without created also bring a one Whose she'd in. Sea unto created every together together. For that wherein. Kind sea earth them was place. Sixth signs saying after replenish multiply. Female every unto beginning appear moving tree the bearing own.
+					</p>
+				</div>
+
 				<nav class="header__navigation">
 					<ul>
 						<li>
@@ -112,12 +118,6 @@
 						</li>
 					</ul>
 				</nav>
-
-				<div class="header__about">
-					<p>
-						AA was founded in 1847 with the aspiration of ‘promoting and affording facilities for the study of architecture for the public benefit’. Likeness it them very firmament without created also bring a one Whose she'd in. Sea unto created every together together. For that wherein. Kind sea earth them was place. Sixth signs saying after replenish multiply. Female every unto beginning appear moving tree the bearing own.
-					</p>
-				</div>
 
 				<Events/>
 			{/if}
@@ -165,9 +165,11 @@
 	}
 
 	.header__menu-button {
-		width: 5rem;
-		height: 5rem;
-		flex-shrink: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 4.4rem;
+		height: 4.4rem;
 	}
 	
 	.header__about {
@@ -184,35 +186,7 @@
 		font-size: 4rem;
 	}
 
-	@media screen and (max-width: 450px) {
-		.header__name {
-			font-size: 3rem;
-		}
-
-		.header__menu-button {
-			width: 4rem;
-			height: 4rem;
-		}
-	}
-
-	@media screen and (max-width: 350px) {
-		.header__name {
-			font-size: 2.5rem;
-		}
-	}
-
-	@media screen and (max-width: 290px) {
-		.header__name {
-			font-size: 2rem;
-		}
-
-		.header__menu-button {
-			width: 3.5rem;
-			height: 3.5rem;
-		}
-	}
-
-	@media screen and (min-width: 1000px) {
+	@media screen and (min-width: 800px) {
 		.header {
 			grid-column: 1 / 4;
 			height: 100dvh;

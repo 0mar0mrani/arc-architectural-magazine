@@ -10,7 +10,7 @@
 	}
 
 	function setImage() {
-		if (window.innerWidth < 1000) {
+		if (window.innerWidth < 800) {
 			src = mobileImage;
 		} else {
 			src = desktopImage;
@@ -83,7 +83,7 @@
 		text-indent: 5.5rem;
 	}
 
-	@media only screen and (min-width: 1000px) {
+	@media only screen and (min-width: 800px) {
 		.information__container {
 			display: grid;
 			grid-template-columns: repeat(9, 1fr);

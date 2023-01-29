@@ -75,7 +75,7 @@
 		text-indent: 5.5rem;
 	}
 
-	@media only screen and (min-width: 1000px) {
+	@media only screen and (min-width: 800px) {
 		.article__container {
 			display: grid;
 			grid-template-columns: repeat(9, 1fr);

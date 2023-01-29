@@ -14,7 +14,7 @@
 		gap: 1rem;
 	}
 
-	@media only screen and (min-width: 1000px) {
+	@media only screen and (min-width: 800px) {
 		.articles-container {
 			padding-top: 1rem;
 			grid-column: 4 / 13;

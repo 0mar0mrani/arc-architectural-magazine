@@ -48,7 +48,7 @@
 		font: var(--font-large-text);
 	}
 
-	@media only screen and (min-width: 1000px) {
+	@media only screen and (min-width: 800px) {
 		.article-overview__full-width {
 			grid-column: span 9;
 		}
