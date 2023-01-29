@@ -95,7 +95,7 @@
 	}
 
 	function setCurrentFilter(event) {
-		const buttonName = event.currentTarget.innerHTML;
+		const buttonName = event.currentTarget.innerHTML.toLowerCase();
 
 		if (buttonName === currentFilter) {
 			currentFilter = null;
@@ -117,7 +117,7 @@
 
 <div class="header__events-container">	
 	<div>
-		<p>UPCOMING EVENTS</p>
+		<p class="header__events-header">UPCOMING EVENTS</p>
 	
 		<div class="header__event-buttons">
 			<button class="header__event-button" on:click={handleEventButtonClick}>lectures</button>
@@ -140,9 +140,22 @@
 </div>
 
 <style>
+	.header__events-header {
+		margin: 2rem 0 1rem 0;
+	}
+
+	.header__event-buttons {
+		display: flex;
+		justify-content: space-between;
+	}
+
 	.header__event-button {
 		color: inherit;
+		font: var(--font-small-text);
 		text-transform: uppercase;
+		padding: 0.2rem 0.8rem;
+		border-radius: 1rem;
+		border: solid 0.1rem var(--secondary-color);
 	}
 
 	.header__events {
