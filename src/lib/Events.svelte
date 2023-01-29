@@ -120,11 +120,26 @@
 		<p class="header__events-header">UPCOMING EVENTS</p>
 	
 		<div class="header__event-buttons">
-			<button class="header__event-button" on:click={handleEventButtonClick}>lectures</button>
+			<button 
+				class="header__event-button" 
+				on:click={handleEventButtonClick}
+				class:header__event-button--selected={currentFilter === 'lectures'}
+				>lectures
+			</button>
 	
-			<button class="header__event-button" on:click={handleEventButtonClick}>exhibitions</button>
+			<button 
+				class="header__event-button" 
+				on:click={handleEventButtonClick}
+				class:header__event-button--selected={currentFilter === 'exhibitions'}
+				>exhibitions
+			</button>
 	
-			<button class="header__event-button" on:click={handleEventButtonClick}>open seminars</button>
+			<button 
+				class="header__event-button" 
+				on:click={handleEventButtonClick}
+				class:header__event-button--selected={currentFilter === 'open seminars'}
+				>open seminars
+			</button>
 		</div>
 	</div>
 
@@ -156,6 +171,11 @@
 		padding: 0.2rem 0.8rem;
 		border-radius: 1rem;
 		border: solid 0.1rem var(--secondary-color);
+	}
+
+	.header__event-button--selected {
+		color: var(--primary-color);
+		background-color: var(--secondary-color);
 	}
 
 	.header__events {
