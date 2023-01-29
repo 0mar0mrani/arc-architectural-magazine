@@ -1,6 +1,7 @@
 <script>
 	import Articles1 from '$lib/Articles.svelte'
 	import Ad from '$lib/ad.svelte'
+	import Subscribe from '$lib/Subscribe.svelte';
 
 	const articles1 = [
 		{
@@ -65,26 +66,31 @@
 	]
 </script>
 
-<div class="articles-container">
+<div class="container">
 	<Articles1
 		articles={articles1}
 	/>
+
 	<Ad/>
+
 	<Articles1
 		articles={articles2}
 	/>
+
+	<Subscribe/>
 </div>
 
 <style>
-	.articles-container {
+	.container {
 		grid-column: 1 / 13;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
+		position: relative;
 	}
 
 	@media only screen and (min-width: 800px) {
-		.articles-container {
+		.container {
 			padding: 1rem 0;
 			grid-column: 4 / 13;
 			display: grid;
