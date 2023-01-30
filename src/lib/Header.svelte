@@ -6,9 +6,11 @@
 	import Logo from './assets/svg/Logo.svelte';
 	import Menu from './assets/svg/Menu.svelte';
 	import Close from './assets/svg/Close.svelte';
+	import Search from './assets/svg/Search.svelte';
 
 	let isMenuOpen = false;
 	let isSticky = false;
+	let isSearchOpen = false;
 	let logoElement;
 	let headerMenuWElement;
 	let headerElement;
@@ -20,6 +22,10 @@
 
 	function handleMenuButtonClick() {
 		isMenuOpen = !isMenuOpen;
+	}
+
+	function handleSearchButtonClick() {
+		isSearchOpen = !isSearchOpen;
 	}
 
 	function handleWindowScroll() {
@@ -67,14 +73,30 @@
 	<div class={`header__menu ${isSticky ? 'header__menu--fixed' : ''}`} bind:this={headerMenuWElement}>
 		<div class="header__menu-name-button-container">
 			<h1 class="header__name">Arc Architectural</h1>
-			
-			<button class="header__menu-button" on:click={handleMenuButtonClick}>
-				{#if isMenuOpen}
-					<Close/>
-				{:else}
-					<Menu/>
-				{/if}
-			</button>
+
+			<div class="header__button-container">
+				<input 
+					type="text" 
+					class="header__search-input" 
+					class:header__search-input--open={isSearchOpen} 
+					placeholder="Search"
+					on:click|stopPropagation
+				>
+
+				<button class="header__menu-button header__menu-button--search" on:click={handleSearchButtonClick}>
+					<Search
+						{isSearchOpen}
+					/>
+				</button>
+				
+				<button class="header__menu-button" on:click={handleMenuButtonClick}>
+					{#if isMenuOpen}
+						<Close/>
+					{:else}
+						<Menu/>
+					{/if}
+				</button>
+			</div>
 		</div>
 
 		<div class="header__main-container">
@@ -163,12 +185,56 @@
 		font: var(--font-large-text);
 	}
 
+	.header__button-container {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
 	.header__menu-button {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		width: 4.4rem;
 		height: 4.4rem;
+	}
+
+	.header__menu-button--search {
+		width: 3rem;
+		height: 3rem;
+		position: relative;
+	}
+
+	.header__search-input {
+		position: absolute;
+		top: 50%;
+		font: var(--font-large-text);
+		right: 0;
+		transform: translateY(-50%);
+		background-color: var(--primary-color);
+		color: var(--secondary-color);
+		padding-left: 0;
+		border: none;
+		border-bottom: solid 0.4rem var(--secondary-color);
+		transition: width 0.2s ease-in;
+		margin-right: 10.5rem;
+		width: 0;
+	}
+	
+	.header__search-input--open {
+		width: calc(100% - 10.5rem);
+	}
+
+	.header__search-input::placeholder {
+		color: var(--secondary-color);
+		opacity: 0.3;
+		transition: all 0.2s;
+		transform: translateY(100%);
+		transition-delay: 0.2s;
+	}
+
+	.header__search-input--open::placeholder {
+		transform: translateY(0);
 	}
 	
 	.header__about {
