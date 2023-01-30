@@ -8,12 +8,74 @@
 	import Close from './assets/svg/Close.svelte';
 	import Search from './assets/svg/Search.svelte';
 
+	const articles = [
+		{
+			header: 'Anhalt University of Applied Sciences',
+			title: 'Dessau Summer School of Architecture',
+			image: 'https://i.postimg.cc/B6v5j0qF/alan-rostovtev.jpg',
+			alt: 'White wall',
+			link: '/article',
+			gridClass: 'article-overview__full-width order1',
+		},
+		{
+			header: 'ArkDes',
+			title: 'Joar Nango: Girjegumpi',
+			image: 'https://i.postimg.cc/9XKPQKs4/mohammad-mohsen-rohani.jpg',
+			alt: 'White building',
+			link: '/article',
+			gridClass: 'article-overview__span4 order2',
+		},
+		{
+			header: 'Sabu Kohso',
+			title: 'Nuclear Recursivity and Seismic Awakening',
+			image: 'https://i.postimg.cc/FHQjjcrN/albert-stoynov.jpg',
+			alt: 'Angled building',
+			link: '/article',
+			gridClass: 'article-overview__span5x2 order1',
+		},
+		{
+			header: 'Bauhaus Dessau Foundation',
+			title: 'Bauhaus Lab 2023: Concrete Antarctic',
+			image: 'https://i.postimg.cc/HxPw5hxh/brice-cooper.jpg',
+			alt: 'Building with bridge',
+			link: '/article',
+			gridClass: 'article-overview__span4',
+		},
+		{
+			header: 'Radiowaves Collective',
+			title: 'Mothering a Movement: Notes from India’s Longest Anti-Nuclear Struggle',
+			image: 'https://i.postimg.cc/gkhVX4Pg/op23.jpg',
+			alt: 'Glass building',
+			link: '/article',
+			gridClass: 'article-overview__full-width',
+		},
+		{
+			header: 'Livia Krohn Miller',
+			title: 'Ten Thousand Years of Isolation',
+			image: 'https://i.postimg.cc/Hk4b3xn5/refargotohp.jpg',
+			alt: 'White building',
+			link: '/article',
+			gridClass: 'article-overview__span5',
+		},
+		{
+			header: 'AA editorial',
+			title: 'The Avant-Garde Museum',
+			image: 'https://i.postimg.cc/GtWvgTvP/tingfeng-xia.jpg',
+			alt: 'Bridge',
+			link: '/article',
+			gridClass: 'article-overview__span4',
+		},
+	]
+
 	let isMenuOpen = false;
 	let isSticky = false;
 	let isSearchOpen = false;
+	let isSearching = false;
+
 	let logoElement;
 	let headerMenuWElement;
 	let headerElement;
+	let inputEl;
 
 	onMount(() => {
 		setIsSticky();
@@ -21,11 +83,27 @@
 	});
 
 	function handleMenuButtonClick() {
+		isSearchOpen = false;
+		isSearching = false;
 		isMenuOpen = !isMenuOpen;
 	}
 
 	function handleSearchButtonClick() {
+		if (isSearching) {
+			inputEl.value = '';
+			isSearching = false;
+		}
+		isMenuOpen = false;
 		isSearchOpen = !isSearchOpen;
+		inputEl.focus();
+	}
+
+	function handleSearchInput() {
+		if (inputEl.value !== '') {
+			isSearching = true;
+		} else {
+			isSearching = false;
+		}
 	}
 
 	function handleWindowScroll() {
@@ -75,14 +153,18 @@
 			<h1 class="header__name">Arc Architectural</h1>
 
 			<div class="header__button-container">
-				<input 
-					type="text" 
-					class="header__search-input" 
-					class:header__search-input--open={isSearchOpen} 
-					placeholder="Search"
-					on:click|stopPropagation
-				>
 
+				{#if !isMenuOpen}
+					<input 
+						type="text" 
+						class="header__search-input" 
+						class:header__search-input--open={isSearchOpen} 
+						placeholder="Search"
+						bind:this={inputEl}
+						on:input={handleSearchInput}
+					>	
+				{/if}
+				
 				<button class="header__menu-button header__menu-button--search" on:click={handleSearchButtonClick}>
 					<Search
 						{isSearchOpen}
@@ -97,6 +179,24 @@
 					{/if}
 				</button>
 			</div>
+
+			{#if isSearching}
+				<ul class="header__search-results">
+					{#each articles as article}
+						<li class="header__search-item">
+							<a href={article.link}>
+								<div class="header__search-item-image">
+									<img src={article.image} alt={article.alt}>
+								</div>
+								
+								<div  class="header__search-item-title">
+									<p>{article.title}</p>
+								</div>
+							</a>
+						</li>
+					{/each}
+				</ul>
+			{/if}
 		</div>
 
 		<div class="header__main-container">
@@ -207,13 +307,12 @@
 
 	.header__search-input {
 		position: absolute;
-		top: 50%;
-		font: var(--font-large-text);
 		right: 0;
+		top: 50%;
 		transform: translateY(-50%);
+		font: var(--font-large-text);
 		background-color: var(--primary-color);
 		color: var(--secondary-color);
-		padding-left: 0;
 		border: none;
 		border-bottom: solid 0.4rem var(--secondary-color);
 		transition: width 0.2s ease-in;
@@ -235,6 +334,47 @@
 
 	.header__search-input--open::placeholder {
 		transform: translateY(0);
+	}
+
+	.header__search-results {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		max-height: calc(100dvh - 8.8rem);
+		overflow-y: scroll;
+		background-color: var(--primary-color);
+		transform: scale(1.005);
+		display: flex;
+		flex-direction: column;
+	}
+
+	.header__search-item a{
+		display: flex;
+		padding: 1rem 0;
+	}
+
+	.header__search-item:not(:last-child) {
+		border-bottom: solid 0.1rem var(--secondary-color);
+	}
+
+	.header__search-item-image {
+		width: 10rem;
+		height: 10rem;
+		aspect-ratio: 1 / 1;
+		background-color: red;
+	}
+
+	.header__search-item-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.header__search-item-title {
+		display: flex;
+		align-items: flex-end;
+		padding: 1rem;
 	}
 	
 	.header__about {
