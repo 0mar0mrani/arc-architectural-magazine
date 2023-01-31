@@ -352,6 +352,11 @@
 		display: flex;
 		flex-direction: column;
 	}
+	
+	.header__search-item:hover {
+		background-color: var(--secondary-color);
+		color: var(--primary-color);
+	}
 
 	.header__search-item a{
 		display: flex;
@@ -367,6 +372,7 @@
 		height: 10rem;
 		aspect-ratio: 1 / 1;
 		background-color: red;
+		margin-left: 1rem;
 	}
 
 	.header__search-item-image img {
