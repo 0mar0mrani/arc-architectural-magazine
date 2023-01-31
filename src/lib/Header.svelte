@@ -115,6 +115,12 @@
 		searchString = '';
 	}
 
+	function handleLogoClick() {
+		isMenuOpen = false;
+		isMenuOpen = false;
+		searchString = '';
+	}
+
 	function filterArticles() {
 		if (searchString !== '') {
 			const filterToCompare = searchString.toLowerCase();
@@ -171,7 +177,7 @@
 <svelte:window on:scroll={handleWindowScroll} on:resize={handleWindowResize}/>
 
 <header class="header" bind:this={headerElement}>
-	<a href="/" bind:this={logoElement} >
+	<a href="/" bind:this={logoElement} on:click={handleLogoClick}>
 		<Logo/>
 	</a>
 
