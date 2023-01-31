@@ -93,9 +93,13 @@
 			inputEl.value = '';
 			isSearching = false;
 		}
+
 		isMenuOpen = false;
 		isSearchOpen = !isSearchOpen;
-		inputEl.focus();
+
+		setTimeout(() => {
+			inputEl.focus();
+		}, 300) 
 	}
 
 	function handleSearchInput() {
