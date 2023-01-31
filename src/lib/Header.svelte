@@ -70,8 +70,10 @@
 	let isMenuOpen = false;
 	let isSticky = false;
 	let isSearchOpen = false;
-	let isSearching = false;
+	let searchString = '';
 
+	let filteredArticles = filterArticles();
+	
 	let logoElement;
 	let headerMenuWElement;
 	let headerElement;
@@ -84,30 +86,51 @@
 
 	function handleMenuButtonClick() {
 		isSearchOpen = false;
-		isSearching = false;
+		searchString = '';
 		isMenuOpen = !isMenuOpen;
 	}
 
 	function handleSearchButtonClick() {
-		if (isSearching) {
-			inputEl.value = '';
-			isSearching = false;
-		}
-
 		isMenuOpen = false;
 		isSearchOpen = !isSearchOpen;
 
-		setTimeout(() => {
-			inputEl.focus();
-		}, 300) 
+		if (searchString !== '') {
+			searchString = '';
+		} else {
+			setTimeout(() => {
+				inputEl.focus();
+			}, 0.3 * 1000) 
+		}
 	}
 
-	function handleSearchInput() {
-		if (inputEl.value !== '') {
-			isSearching = true;
+	function handleSearchInput(event) {
+		const stringInput = event.currentTarget.value;
+		setFilterString(stringInput);
+		filteredArticles = filterArticles();
+	}
+
+	function handleResultClick() {
+		isSearchOpen = false;
+		isMenuOpen = false;
+		searchString = '';
+	}
+
+	function filterArticles() {
+		if (searchString !== '') {
+			const filterToCompare = searchString.toLowerCase();
+
+			return articles.filter(article => {
+				const titleToCompare = article.title.toLowerCase();
+
+				return titleToCompare.includes(filterToCompare);
+			});
 		} else {
-			isSearching = false;
+			return articles;
 		}
+	}
+	
+	function setFilterString(string) {
+		searchString = string;
 	}
 
 	function handleWindowScroll() {
@@ -163,8 +186,9 @@
 						type="text" 
 						class="header__search-input" 
 						class:header__search-input--open={isSearchOpen} 
-						placeholder="Search"
+						placeholder="search"
 						bind:this={inputEl}
+						bind:value={searchString}
 						on:input={handleSearchInput}
 					>	
 				{/if}
@@ -184,11 +208,11 @@
 				</button>
 			</div>
 
-			{#if isSearching}
+			{#if searchString !== ''}
 				<ul class="header__search-results">
-					{#each articles as article}
+					{#each filteredArticles as article}
 						<li class="header__search-item">
-							<a href={article.link}>
+							<a href={article.link} on:click={handleResultClick}>
 								<div class="header__search-item-image">
 									<img src={article.image} alt={article.alt}>
 								</div>
@@ -322,10 +346,12 @@
 		transition: width 0.2s ease-in;
 		margin-right: 10.5rem;
 		width: 0;
+		padding-left: 0;
 	}
 	
 	.header__search-input--open {
 		width: calc(100% - 10.5rem);
+		padding-left: 0.5rem;
 	}
 
 	.header__search-input::placeholder {
@@ -352,15 +378,10 @@
 		display: flex;
 		flex-direction: column;
 	}
-	
-	.header__search-item:hover {
-		background-color: var(--secondary-color);
-		color: var(--primary-color);
-	}
 
-	.header__search-item a{
+	.header__search-item a {
 		display: flex;
-		padding: 1rem 0;
+		padding: 2rem;
 	}
 
 	.header__search-item:not(:last-child) {
@@ -372,7 +393,6 @@
 		height: 10rem;
 		aspect-ratio: 1 / 1;
 		background-color: red;
-		margin-left: 1rem;
 	}
 
 	.header__search-item-image img {
@@ -384,7 +404,7 @@
 	.header__search-item-title {
 		display: flex;
 		align-items: flex-end;
-		padding: 1rem;
+		padding-left: 1rem;
 	}
 	
 	.header__about {
