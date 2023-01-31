@@ -161,7 +161,7 @@
 
 	.header__event-buttons {
 		display: flex;
-		justify-content: space-between;
+		gap: 1rem;
 	}
 
 	.header__event-button {
