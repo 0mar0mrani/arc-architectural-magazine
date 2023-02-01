@@ -1,6 +1,6 @@
 <style>
 	:global(html) {
-		font-size: 2.083vw;
+		font-size: 2vw;
 	}
 
 	:global(body) {
@@ -9,6 +9,12 @@
 		color: var(--secondary-color);
 		font: var(--font-body-text);
 
+	}
+
+	@media screen and (min-width: 330px) {
+		:global(html) {
+			font-size: 2.083vw;
+		}
 	}
 
 	@media screen and (min-width: 480px) {
