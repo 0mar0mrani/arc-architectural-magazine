@@ -18,4 +18,10 @@
 	svg:hover path{
 		fill: #9747ff;
 	}
+
+	svg {
+		width: 100%;
+		height: auto;
+		display: block;
+	}
 </style>

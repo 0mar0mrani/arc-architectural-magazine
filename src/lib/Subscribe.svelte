@@ -32,13 +32,13 @@
 <svelte:window on:resize={handleWindowResize}/>
 
 {#if isOpen}
-	<button class="subscribe">
+	<a class="subscribe" href="/information">
 		<p bind:this={subscribeTextEl}>Subscribe</p>
 
 		<button class="subscribe__close-button" on:click|stopPropagation={handleButtonClick}>
 			<Close/>
 		</button>
-	</button>
+	</a>
 {/if}
 
 <style>

@@ -1,7 +1,5 @@
 <script>
 	import { onMount } from 'svelte';
-
-	document.documentElement.dataset.theme = '';
 	
 	let src;
 	const mobileImage = 'https://i.postimg.cc/5tbSMzTn/alan-rostovtev-information.jpg';

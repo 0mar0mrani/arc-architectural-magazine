@@ -71,16 +71,24 @@
 	let isSticky = false;
 	let isSearchOpen = false;
 	let searchString = '';
+	let isMobile = false;
 
 	let filteredArticles = filterArticles();
 	
-	let logoElement;
-	let headerMenuWElement;
-	let headerElement;
+	const desktopWidth = 800;
+
+	let headerEl;
+	let menuEl;
+	let menuTopEl;
+	let dropDownMenuEl;
+	let dropDownSearchEl;
+	let logoEl;
 	let inputEl;
 
 	onMount(() => {
+		setIsMobile();
 		setIsSticky();
+		setMarginToHeader();
 		setDesktopHeader();
 	});
 
@@ -88,6 +96,11 @@
 		isSearchOpen = false;
 		searchString = '';
 		isMenuOpen = !isMenuOpen;
+		
+		if (isMenuOpen) {
+			setDropDownHeight();
+			console.log('yooo');
+		}
 	}
 
 	function handleSearchButtonClick() {
@@ -109,24 +122,43 @@
 		filteredArticles = filterArticles();
 	}
 
-	function handleResultClick() {
-		isSearchOpen = false;
-		isMenuOpen = false;
-		searchString = '';
-	}
-
 	function handleLogoClick() {
-		isMenuOpen = false;
-		isMenuOpen = false;
-		searchString = '';
+		resetMobileNavigation();
 	}
 
 	function handleWindowScroll() {
 		setIsSticky();
+		setMarginToHeader();
+		setDropDownHeight();
+	}
+
+	function handleResultClick() {
+		resetMobileNavigation();
 	}
 
 	function handleWindowResize() {
 		setDesktopHeader();
+		setIsMobile();
+	}
+
+	function handleMenuNavClick() {
+		resetMobileNavigation();
+	}
+
+	function setIsMobile() {
+		if (window.innerWidth >= desktopWidth) {
+			isMobile = false;
+		} else {
+			isMobile = true;
+		}
+	}
+
+	function resetMobileNavigation() {
+		if (isMobile) {
+			isMenuOpen = false;
+			isSearchOpen = false;
+			searchString = '';
+		}
 	}
 
 	function filterArticles() {
@@ -149,9 +181,8 @@
 
 	function setDesktopHeader() {
 		const screenWidth = window.innerWidth;
-		const desktop = 800;
 
-		if (screenWidth >= desktop) {
+		if (screenWidth >= desktopWidth) {
 			isMenuOpen = true;
 		} else {
 			isMenuOpen = false;
@@ -159,31 +190,50 @@
 	}
 
 	function setIsSticky() {
-		const rect = logoElement.getBoundingClientRect();
-		const scroll = window.scrollY; 
-		const logoHeightPlusMargin = rect.top + scroll + 10;
-		const headerMenuHeight = headerMenuWElement.offsetHeight;
+		const scrollY = window.screenY;
+		const logoHeight = logoEl.getBoundingClientRect().bottom + scrollY;
 		
-		if (scroll > logoHeightPlusMargin) {
+		if (scrollY >= logoHeight) {
 			isSticky = true;
-			headerElement.style.marginBottom = `${headerMenuHeight}px`
 		} else {
-			isSticky = false;
-			headerElement.style.marginBottom = '0px'
+			isSticky = false;	
+		}
+	}
+
+	function setMarginToHeader() {
+		const menuTopHeight = menuTopEl.offsetHeight;
+
+		if (isSticky) {
+			headerEl.style.marginBottom = `${menuTopHeight}px`;
+		} else {
+			headerEl.style.marginBottom = '';
+		}
+	}
+
+	function setDropDownHeight() {
+		if (isMenuOpen || isSearchOpen) {
+			const headerMenuRelativeToView = menuEl.getBoundingClientRect().top;
+			const menuTopHeight = menuTopEl.offsetHeight;
+			const dynamicHeight = `calc(100dvh - ${menuTopHeight}px - ${headerMenuRelativeToView}px)`
+	
+			dropDownMenuEl.style.maxHeight = dynamicHeight;
+			dropDownSearchEl.style.maxHeight = dynamicHeight;
 		}
 	}
 </script>
 
 <svelte:window on:scroll={handleWindowScroll} on:resize={handleWindowResize}/>
 
-<header class="header" bind:this={headerElement}>
-	<a href="/" bind:this={logoElement} on:click={handleLogoClick}>
+<header class="header" bind:this={headerEl}>
+	<a href="/" bind:this={logoEl} on:click={handleLogoClick}>
 		<Logo/>
 	</a>
 
-	<div class={`header__menu ${isSticky ? 'header__menu--fixed' : ''}`} bind:this={headerMenuWElement}>
-		<div class="header__menu-name-button-container">
-			<h1 class="header__name">Arc Architectural</h1>
+	<div class={`header__menu ${isSticky ? 'header__menu--fixed' : ''}`} bind:this={menuEl}>
+		<div class="header__menu-name-button-container" bind:this={menuTopEl}>
+			<a href="/">
+				<h1 class="header__name">Arc Architectural</h1>
+			</a>
 
 			<div class="header__button-container">
 
@@ -214,69 +264,65 @@
 				</button>
 			</div>
 
-			{#if searchString !== ''}
-				<ul class="header__search-results">
-					{#each filteredArticles as article}
-						<li class="header__search-item">
-							<a href={article.link} on:click={handleResultClick}>
-								<div class="header__search-item-image">
-									<img src={article.image} alt={article.alt}>
-								</div>
-								
-								<div  class="header__search-item-title">
-									<p>{article.title}</p>
-								</div>
-							</a>
-						</li>
-					{/each}
-				</ul>
-			{/if}
+			<ul class="header__search-results" class:hidden={searchString === ''} bind:this={dropDownSearchEl}>
+				{#each filteredArticles as article}
+					<li class="header__search-item">
+						<a href={article.link} on:click={handleResultClick}>
+							<div class="header__search-item-image">
+								<img src={article.image} alt={article.alt}>
+							</div>
+							
+							<div  class="header__search-item-title">
+								<p>{article.title}</p>
+							</div>
+						</a>
+					</li>
+				{/each}
+			</ul>
 		</div>
 
-		<div class="header__main-container">
-			{#if isMenuOpen}
-				<div class="header__about">
-					<p>
-						AA was founded in 1847 with the aspiration of ‘promoting and affording facilities for the study of architecture for the public benefit’. Likeness it them very firmament without created also bring a one Whose she'd in. Sea unto created every together together. For that wherein. Kind sea earth them was place. Sixth signs saying after replenish multiply. Female every unto beginning appear moving tree the bearing own.
-					</p>
-				</div>
+		<div class="header__main-container" class:hidden={!isMenuOpen} bind:this={dropDownMenuEl}>
+			<div class="header__about">
+				<p>
+					AA was founded in 1847 with the aspiration of ‘promoting and affording facilities for the study of architecture for the public benefit’. Likeness it them very firmament without created also bring a one Whose she'd in. Sea unto created every together together. For that wherein. Kind sea earth them was place. Sixth signs saying after replenish multiply. Female every unto beginning appear moving tree the bearing own.
+				</p>
+			</div>
 
-				<nav class="header__navigation">
-					<ul>
-						<li>
-							<a href="/information">
-								Announcements
-							</a>
-						</li>
+			<nav class="header__navigation">
+				<ul>
+					<li>
+						<a href="/information" on:click={handleMenuNavClick}>
+							Announcements
+						</a>
+					</li>
 
-						<li>
-							<a href="/information">
-								Journal
-							</a>
-						</li>
+					<li>
+						<a href="/information" on:click={handleMenuNavClick}>
+							Journal
+						</a>
+					</li>
 
-						<li>
-							<a href="/information">
-								Reviews
-							</a>
-						</li>
+					<li>
+						<a href="/information" on:click={handleMenuNavClick}>
+							Reviews
+						</a>
+					</li>
 
-						<li>
-							<a href="/information">
-								Books
-							</a>
-						</li>
+					<li>
+						<a href="/information" on:click={handleMenuNavClick}>
+							Books
+						</a>
+					</li>
 
-						<li>
-							<a href="/information">
-								Information
-							</a>
-						</li>
-					</ul>
-				</nav>
+					<li>
+						<a href="/information" on:click={handleMenuNavClick}>
+							Information
+						</a>
+					</li>
+				</ul>
+			</nav>
 
-				<Events/>
-			{/if}
+			<Events/>
 		</div>
 	</div>
 </header>
@@ -292,7 +338,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		position: relative;
-		transform: scale(1.001);
+		/* transform: scale(1.001); */
 	}
 
 	.header__menu-name-button-container {
@@ -305,7 +351,7 @@
 
 	.header__main-container {
 		overflow-y: scroll;
-		max-height: calc(100dvh - 9rem);
+		/* max-height: calc(100dvh - 9rem); */
 		background-color: var(--primary-color);
 	}
 	
@@ -380,7 +426,7 @@
 		max-height: calc(100dvh - 8.8rem);
 		overflow-y: scroll;
 		background-color: var(--primary-color);
-		transform: scale(1.005);
+		/* transform: scale(1.005); */
 		display: flex;
 		flex-direction: column;
 	}
@@ -416,7 +462,6 @@
 	.header__about {
 		font: var(--font-body-text);
 		padding: 2rem 0;
-		border-top: solid 1px var(--secondary-color);
 		border-bottom: solid 1px var(--secondary-color);
 	}
 
@@ -426,6 +471,10 @@
 		background-color: var(--primary-color);
 		padding: 2rem 0;
 		font-size: 4rem;
+	}
+
+	.hidden { 
+		display: none !important;
 	}
 
 	@media screen and (min-width: 800px) {

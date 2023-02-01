@@ -3,8 +3,6 @@
 	import Ad from '$lib/ad.svelte'
 	import Subscribe from '$lib/Subscribe.svelte';
 
-	document.documentElement.dataset.theme = '';
-
 	const articles1 = [
 		{
 			header: 'Anhalt University of Applied Sciences',
