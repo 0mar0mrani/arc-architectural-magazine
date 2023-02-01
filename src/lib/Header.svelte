@@ -121,6 +121,14 @@
 		searchString = '';
 	}
 
+	function handleWindowScroll() {
+		setIsSticky();
+	}
+
+	function handleWindowResize() {
+		setDesktopHeader();
+	}
+
 	function filterArticles() {
 		if (searchString !== '') {
 			const filterToCompare = searchString.toLowerCase();
@@ -137,14 +145,6 @@
 	
 	function setFilterString(string) {
 		searchString = string;
-	}
-
-	function handleWindowScroll() {
-		setIsSticky();
-	}
-
-	function handleWindowResize() {
-		setDesktopHeader();
 	}
 
 	function setDesktopHeader() {

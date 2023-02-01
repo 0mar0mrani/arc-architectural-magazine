@@ -10,7 +10,7 @@
 		--font-small-text: 1.4rem 'Times New Roman';
 	}
 
-	:global(body:has(.dark-mode)) {
+	:global(:root[data-theme="dark-mode"]) {
 		--primary-color: #000;
 		--secondary-color: #fff;
 	}

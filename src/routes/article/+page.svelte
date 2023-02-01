@@ -1,4 +1,8 @@
-<div class="article__container dark-mode">
+<script>
+	document.documentElement.dataset.theme = 'dark-mode';
+</script>
+
+<main class="article__container">
 	<p class="article__sub-title">Anhalt University of Applied Sciences</p>
 
 	<h2 class="article__title">Mothering a Movement: Notes from India’s Longest Anti-Nuclear Struggle</h2>
@@ -42,7 +46,7 @@
 			Itself unto. Gathered, had yielding. Of can't form kind had void open. Greater kind male over beginning is forth female waters bearing i abundantly said bring divide herb dry let whose good. Bring fish thing firmament life darkness man saying have he over days herb place night he. Form two above were good kind together herb above sixth yielding fruit evening His brought rule open. He they're. Grass and thing were forth. Bearing replenish together said said fill divided, whales created they're divided. Face it subdue earth meat fill air from don't above shall. Void creeping which winged bearing, multiply. Under bring two meat greater so seas green also his first heaven two lesser rule give likeness. Itself greater living had. And, hath. Heaven given, have she'd moved meat. Above void. Was light set lesser fourth fill fifth. Seed said hath dominion Given. Midst don't bearing. Forth upon let.
 		</p>
 	</div>
-</div>
+</main>
 
 <style>
 	.article__container {
