@@ -71,16 +71,21 @@
 	let isSticky = false;
 	let isSearchOpen = false;
 	let searchString = '';
+	let isMobile = false;
 
 	let filteredArticles = filterArticles();
 	
-	let logoElement;
-	let headerMenuWElement;
-	let headerElement;
+	const desktopWidth = 800;
+
+	let logoEl;
+	let headerMenuEl;
+	let headerEl;
 	let inputEl;
 
 	onMount(() => {
+		setIsMobile();
 		setIsSticky();
+		setMarginToHeader();
 		setDesktopHeader();
 	});
 
@@ -109,24 +114,42 @@
 		filteredArticles = filterArticles();
 	}
 
-	function handleResultClick() {
-		isSearchOpen = false;
-		isMenuOpen = false;
-		searchString = '';
-	}
-
 	function handleLogoClick() {
-		isMenuOpen = false;
-		isMenuOpen = false;
-		searchString = '';
+		resetMobileNavigation();
 	}
 
 	function handleWindowScroll() {
 		setIsSticky();
+		setMarginToHeader();
+	}
+
+	function handleResultClick() {
+		resetMobileNavigation();
 	}
 
 	function handleWindowResize() {
 		setDesktopHeader();
+		setIsMobile();
+	}
+
+	function handleMenuNavClick() {
+		resetMobileNavigation();
+	}
+
+	function setIsMobile() {
+		if (window.innerWidth >= desktopWidth) {
+			isMobile = false;
+		} else {
+			isMobile = true;
+		}
+	}
+
+	function resetMobileNavigation() {
+		if (isMobile) {
+			isMenuOpen = false;
+			isSearchOpen = false;
+			searchString = '';
+		}
 	}
 
 	function filterArticles() {
@@ -149,9 +172,8 @@
 
 	function setDesktopHeader() {
 		const screenWidth = window.innerWidth;
-		const desktop = 800;
 
-		if (screenWidth >= desktop) {
+		if (screenWidth >= desktopWidth) {
 			isMenuOpen = true;
 		} else {
 			isMenuOpen = false;
@@ -159,31 +181,39 @@
 	}
 
 	function setIsSticky() {
-		const rect = logoElement.getBoundingClientRect();
-		const scroll = window.scrollY; 
-		const logoHeightPlusMargin = rect.top + scroll + 10;
-		const headerMenuHeight = headerMenuWElement.offsetHeight;
+		const scrollY = window.screenY;
+		const logoHeight = logoEl.getBoundingClientRect().bottom + scrollY;
 		
-		if (scroll > logoHeightPlusMargin) {
+		if (scrollY >= logoHeight) {
 			isSticky = true;
-			headerElement.style.marginBottom = `${headerMenuHeight}px`
 		} else {
-			isSticky = false;
-			headerElement.style.marginBottom = '0px'
+			isSticky = false;	
+		}
+	}
+
+	function setMarginToHeader() {
+		const menuHeight = headerMenuEl.offsetHeight;
+
+		if (isSticky) {
+			headerEl.style.marginBottom = `${menuHeight}px`;
+		} else {
+			headerEl.style.marginBottom = '';
 		}
 	}
 </script>
 
 <svelte:window on:scroll={handleWindowScroll} on:resize={handleWindowResize}/>
 
-<header class="header" bind:this={headerElement}>
-	<a href="/" bind:this={logoElement} on:click={handleLogoClick}>
+<header class="header" bind:this={headerEl}>
+	<a href="/" bind:this={logoEl} on:click={handleLogoClick}>
 		<Logo/>
 	</a>
 
-	<div class={`header__menu ${isSticky ? 'header__menu--fixed' : ''}`} bind:this={headerMenuWElement}>
+	<div class={`header__menu ${isSticky ? 'header__menu--fixed' : ''}`} bind:this={headerMenuEl}>
 		<div class="header__menu-name-button-container">
-			<h1 class="header__name">Arc Architectural</h1>
+			<a href="/">
+				<h1 class="header__name">Arc Architectural</h1>
+			</a>
 
 			<div class="header__button-container">
 
@@ -244,31 +274,31 @@
 				<nav class="header__navigation">
 					<ul>
 						<li>
-							<a href="/information">
+							<a href="/information" on:click={handleMenuNavClick}>
 								Announcements
 							</a>
 						</li>
 
 						<li>
-							<a href="/information">
+							<a href="/information" on:click={handleMenuNavClick}>
 								Journal
 							</a>
 						</li>
 
 						<li>
-							<a href="/information">
+							<a href="/information" on:click={handleMenuNavClick}>
 								Reviews
 							</a>
 						</li>
 
 						<li>
-							<a href="/information">
+							<a href="/information" on:click={handleMenuNavClick}>
 								Books
 							</a>
 						</li>
 
 						<li>
-							<a href="/information">
+							<a href="/information" on:click={handleMenuNavClick}>
 								Information
 							</a>
 						</li>
