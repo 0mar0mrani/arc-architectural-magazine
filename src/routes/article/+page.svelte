@@ -1,8 +1,4 @@
-<script>
-	document.documentElement.dataset.theme = 'dark-mode';
-</script>
-
-<main class="article__container">
+<main class="article__container" data-theme="dark">
 	<p class="article__sub-title">Anhalt University of Applied Sciences</p>
 
 	<h2 class="article__title">Mothering a Movement: Notes from India’s Longest Anti-Nuclear Struggle</h2>
