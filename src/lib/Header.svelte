@@ -123,7 +123,7 @@
 	}
 
 	function handleLogoClick() {
-		resetMobileNavigation();
+		// resetMobileNavigation();
 	}
 
 	function handleWindowScroll() {
@@ -399,6 +399,7 @@
 		margin-right: 10.5rem;
 		width: 0;
 		padding-left: 0;
+		overflow: hidden;
 	}
 	
 	.header__search-input--open {
@@ -461,7 +462,7 @@
 	
 	.header__about {
 		font: var(--font-body-text);
-		padding: 2rem 0;
+		padding-bottom: 2rem;
 		border-bottom: solid 1px var(--secondary-color);
 	}
 
@@ -497,6 +498,10 @@
 		.header__main-container {
 			overflow-y: unset;
 			max-height: unset;
+		}
+
+		.header__about {
+			padding-top: 2rem;
 		}
 	}
 </style>
