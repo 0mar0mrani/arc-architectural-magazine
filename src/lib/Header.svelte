@@ -89,7 +89,6 @@
 		setIsMobile();
 		setIsSticky();
 		setMarginToHeader();
-		setDesktopHeader();
 	});
 
 	function handleMenuButtonClick() {
@@ -99,7 +98,6 @@
 		
 		if (isMenuOpen) {
 			setDropDownHeight();
-			console.log('yooo');
 		}
 	}
 
@@ -123,7 +121,7 @@
 	}
 
 	function handleLogoClick() {
-		// resetMobileNavigation();
+		resetMobileNavigation();
 	}
 
 	function handleWindowScroll() {
@@ -136,8 +134,7 @@
 		resetMobileNavigation();
 	}
 
-	function handleWindowResize() {
-		setDesktopHeader();
+	function handleWindowResize(event) {
 		setIsMobile();
 	}
 
@@ -177,16 +174,6 @@
 	
 	function setFilterString(string) {
 		searchString = string;
-	}
-
-	function setDesktopHeader() {
-		const screenWidth = window.innerWidth;
-
-		if (screenWidth >= desktopWidth) {
-			isMenuOpen = true;
-		} else {
-			isMenuOpen = false;
-		}
 	}
 
 	function setIsSticky() {
@@ -264,7 +251,7 @@
 				</button>
 			</div>
 
-			<ul class="header__search-results" class:hidden={searchString === ''} bind:this={dropDownSearchEl}>
+			<ul class="header__search-results" class:mobile-hidden={searchString === ''} bind:this={dropDownSearchEl}>
 				{#each filteredArticles as article}
 					<li class="header__search-item">
 						<a href={article.link} on:click={handleResultClick}>
@@ -281,7 +268,7 @@
 			</ul>
 		</div>
 
-		<div class="header__main-container" class:hidden={!isMenuOpen} bind:this={dropDownMenuEl}>
+		<div class="header__main-container" class:mobile-hidden={!isMenuOpen} bind:this={dropDownMenuEl}>
 			<div class="header__about">
 				<p>
 					AA was founded in 1847 with the aspiration of ‘promoting and affording facilities for the study of architecture for the public benefit’. Likeness it them very firmament without created also bring a one Whose she'd in. Sea unto created every together together. For that wherein. Kind sea earth them was place. Sixth signs saying after replenish multiply. Female every unto beginning appear moving tree the bearing own.
@@ -338,7 +325,6 @@
 		flex-direction: column;
 		justify-content: space-between;
 		position: relative;
-		/* transform: scale(1.001); */
 	}
 
 	.header__menu-name-button-container {
@@ -426,7 +412,6 @@
 		max-height: calc(100dvh - 8.8rem);
 		overflow-y: scroll;
 		background-color: var(--primary-color);
-		/* transform: scale(1.005); */
 		display: flex;
 		flex-direction: column;
 	}
@@ -505,6 +490,10 @@
 
 		.header__about {
 			padding-top: 2rem;
+		}
+
+		.mobile-hidden { 
+			display: unset !important;
 		}
 	}
 </style>
