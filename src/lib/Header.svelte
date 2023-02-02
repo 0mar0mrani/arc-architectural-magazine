@@ -291,31 +291,31 @@
 			<nav class="header__navigation">
 				<ul>
 					<li>
-						<a href="/information" on:click={handleMenuNavClick}>
+						<a href="/information" class="header__navigation-item" on:click={handleMenuNavClick}>
 							Announcements
 						</a>
 					</li>
 
 					<li>
-						<a href="/information" on:click={handleMenuNavClick}>
+						<a href="/information" class="header__navigation-item" on:click={handleMenuNavClick}>
 							Journal
 						</a>
 					</li>
 
 					<li>
-						<a href="/information" on:click={handleMenuNavClick}>
+						<a href="/information" class="header__navigation-item" on:click={handleMenuNavClick}>
 							Reviews
 						</a>
 					</li>
 
 					<li>
-						<a href="/information" on:click={handleMenuNavClick}>
+						<a href="/information" class="header__navigation-item" on:click={handleMenuNavClick}>
 							Books
 						</a>
 					</li>
 
 					<li>
-						<a href="/information" on:click={handleMenuNavClick}>
+						<a href="/information" class="header__navigation-item" on:click={handleMenuNavClick}>
 							Information
 						</a>
 					</li>
@@ -351,7 +351,6 @@
 
 	.header__main-container {
 		overflow-y: scroll;
-		/* max-height: calc(100dvh - 9rem); */
 		background-color: var(--primary-color);
 	}
 	
@@ -472,6 +471,10 @@
 		background-color: var(--primary-color);
 		padding: 2rem 0;
 		font-size: 4rem;
+	}
+
+	.header__navigation-item:hover {
+		text-decoration: underline;
 	}
 
 	.hidden { 
