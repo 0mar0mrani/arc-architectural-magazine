@@ -28,6 +28,8 @@
 	.ads {
 		grid-column: 1 / 10;
 		display: flex;
+		gap: 1rem;
+		padding: 1rem;
 		flex-direction: column;
 		font: var(--font-large-text);
 		color: var(--primary-color);
@@ -42,11 +44,6 @@
 		align-items: center;
 		background-color: var(--tertiary-color);
 		aspect-ratio: 4 / 3;
-		margin: 0 1rem 1rem 1rem;
-	}
-
-	.ads__ad:first-child {
-		margin-top: 1rem;
 	}
 
 	@media only screen and (min-width: 800px) {

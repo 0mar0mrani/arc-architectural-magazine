@@ -32,13 +32,13 @@
 <svelte:window on:resize={handleWindowResize}/>
 
 {#if isOpen}
-	<a class="subscribe" href="/information">
+	<button class="subscribe">
 		<p bind:this={subscribeTextEl}>Subscribe</p>
 
 		<button class="subscribe__close-button" on:click|stopPropagation={handleButtonClick}>
 			<Close/>
 		</button>
-	</a>
+	</button>
 {/if}
 
 <style>
@@ -53,6 +53,7 @@
 		right: 0;
 		border-radius: 1rem;
 		font: var(--font-large-text);
+		color: var(--secondary-color);
 		padding: 0.7rem 1.5rem;
 		grid-column: 1 / 10;
 	}
