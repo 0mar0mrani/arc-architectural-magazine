@@ -53,6 +53,7 @@
 		right: 0;
 		border-radius: 1rem;
 		font: var(--font-large-text);
+		color: var(--secondary-color);
 		padding: 0.7rem 1.5rem;
 		grid-column: 1 / 10;
 	}
