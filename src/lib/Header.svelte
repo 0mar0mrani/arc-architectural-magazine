@@ -462,7 +462,7 @@
 		text-decoration: underline;
 	}
 
-	.hidden { 
+	.mobile-hidden { 
 		display: none !important;
 	}
 
