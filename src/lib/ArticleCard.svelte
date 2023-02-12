@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	export let header = '';
 	export let title = '';
 	export let src = '';

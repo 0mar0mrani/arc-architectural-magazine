@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
 	import ArticleCard from '$lib/ArticleCard.svelte';
+	import type { ArticleType } from '../types';
 
-	export let articles;
+	export let articles: ArticleType[];
 </script>
 
 {#each articles as article}

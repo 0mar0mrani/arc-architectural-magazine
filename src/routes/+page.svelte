@@ -1,5 +1,5 @@
 <script>
-	import Articles1 from '$lib/Articles.svelte'
+	import Articles from '$lib/Articles.svelte'
 	import Ad from '$lib/ad.svelte'
 	import Subscribe from '$lib/Subscribe.svelte';
 
@@ -67,13 +67,13 @@
 </script>
 
 <div class="container">
-	<Articles1
+	<Articles
 		articles={articles1}
 	/>
 
 	<Ad/>
 
-	<Articles1
+	<Articles
 		articles={articles2}
 	/>
 

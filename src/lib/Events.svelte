@@ -1,8 +1,4 @@
-<script>
-	export let category = '';
-	export let date = '';
-	export let title = '';
-
+<script lang="ts">
 	const events = [	
 		{
 			category: 'Lectures',
@@ -86,16 +82,17 @@
 		},
 	]
 
-	let currentFilter = null;
+	let currentFilter: null | string = null;
 	let filteredEvents = filterEvents();
 
-	function handleEventButtonClick(event) {
+	function handleEventButtonClick(event: MouseEvent) {
 		setCurrentFilter(event);
 		filteredEvents = filterEvents();
 	}
 
-	function setCurrentFilter(event) {
-		const buttonName = event.currentTarget.innerHTML.toLowerCase();
+	function setCurrentFilter(event: MouseEvent) {
+		const target = event.currentTarget as HTMLButtonElement;
+		const buttonName = target.innerHTML.toLowerCase();
 
 		if (buttonName === currentFilter) {
 			currentFilter = null;

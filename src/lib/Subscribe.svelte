@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 
 	import Close from '$lib/assets/svg/Close.svelte';
 
 	let isOpen = true;
-	let subscribeTextEl;
+	let subscribeTextEl: HTMLElement;
 
 	onMount(() => {
 		setText();
@@ -65,9 +65,5 @@
 		width: 5rem;
 		height: 5rem;
 		z-index: 10;
-	}
-
-	@media only screen and (min-width: 800px) {
-
 	}
 </style>

@@ -1,8 +1,7 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 
 	import Events from '$lib/Events.svelte'
-
 	import Logo from './assets/svg/Logo.svelte';
 	import Menu from './assets/svg/Menu.svelte';
 	import Close from './assets/svg/Close.svelte';
@@ -77,13 +76,13 @@
 	
 	const desktopWidth = 800;
 
-	let headerEl;
-	let menuEl;
-	let menuTopEl;
-	let dropDownMenuEl;
-	let dropDownSearchEl;
-	let logoEl;
-	let inputEl;
+	let headerEl: HTMLElement;
+	let menuEl: HTMLElement;
+	let menuTopEl: HTMLElement;
+	let dropDownMenuEl: HTMLElement;
+	let dropDownSearchEl: HTMLElement;
+	let logoEl: HTMLElement;
+	let inputEl: HTMLElement;
 
 	onMount(() => {
 		setIsMobile();
@@ -114,8 +113,9 @@
 		}
 	}
 
-	function handleSearchInput(event) {
-		const stringInput = event.currentTarget.value;
+	function handleSearchInput(event: InputEvent) {
+		const target = event.currentTarget as HTMLInputElement;
+		const stringInput = target.value;
 		setFilterString(stringInput);
 		filteredArticles = filterArticles();
 	}
@@ -134,7 +134,7 @@
 		resetMobileNavigation();
 	}
 
-	function handleWindowResize(event) {
+	function handleWindowResize() {
 		setIsMobile();
 	}
 
@@ -172,8 +172,14 @@
 		}
 	}
 	
-	function setFilterString(string) {
+	function setFilterString(string: string) {
 		searchString = string;
+	}
+
+	function setDesktopHeader() {
+		if (!isMobile) {
+			isMenuOpen = false;
+		}
 	}
 
 	function setIsSticky() {
@@ -216,7 +222,10 @@
 		<Logo/>
 	</a>
 
-	<div class={`header__menu ${isSticky ? 'header__menu--fixed' : ''}`} bind:this={menuEl}>
+	<div 
+		class="header__menu"
+		class:header__menu--fixed={isSticky}
+		bind:this={menuEl}>
 		<div class="header__menu-name-button-container" bind:this={menuTopEl}>
 			<a href="/">
 				<h1 class="header__name">Arc Architectural</h1>
@@ -251,21 +260,27 @@
 				</button>
 			</div>
 
-			<ul class="header__search-results" class:mobile-hidden={searchString === ''} bind:this={dropDownSearchEl}>
-				{#each filteredArticles as article}
-					<li class="header__search-item">
-						<a href={article.link} on:click={handleResultClick}>
-							<div class="header__search-item-image">
-								<img src={article.image} alt={article.alt}>
-							</div>
-							
-							<div  class="header__search-item-title">
-								<p>{article.title}</p>
-							</div>
-						</a>
-					</li>
-				{/each}
-			</ul>
+			{#if isMobile}
+				<ul 
+					class="header__search-results" 
+					class:hidden={searchString === ''} 
+					bind:this={dropDownSearchEl}>
+
+					{#each filteredArticles as article}
+						<li class="header__search-item">
+							<a href={article.link} on:click={handleResultClick}>
+								<div class="header__search-item-image">
+									<img src={article.image} alt={article.alt}>
+								</div>
+								
+								<div  class="header__search-item-title">
+									<p>{article.title}</p>
+								</div>
+							</a>
+						</li>
+					{/each}
+				</ul>
+			{/if}
 		</div>
 
 		<div class="header__main-container" class:mobile-hidden={!isMenuOpen} bind:this={dropDownMenuEl}>
@@ -278,31 +293,31 @@
 			<nav class="header__navigation">
 				<ul>
 					<li>
-						<a href="/information" class="header__navigation-item" on:click={handleMenuNavClick}>
+						<a href="/information" on:click={handleMenuNavClick} class="header__navigation-item">
 							Announcements
 						</a>
 					</li>
 
 					<li>
-						<a href="/information" class="header__navigation-item" on:click={handleMenuNavClick}>
+						<a href="/information" on:click={handleMenuNavClick} class="header__navigation-item">
 							Journal
 						</a>
 					</li>
 
 					<li>
-						<a href="/information" class="header__navigation-item" on:click={handleMenuNavClick}>
+						<a href="/information" on:click={handleMenuNavClick} class="header__navigation-item">
 							Reviews
 						</a>
 					</li>
 
 					<li>
-						<a href="/information" class="header__navigation-item" on:click={handleMenuNavClick}>
+						<a href="/information" on:click={handleMenuNavClick} class="header__navigation-item">
 							Books
 						</a>
 					</li>
 
 					<li>
-						<a href="/information" class="header__navigation-item" on:click={handleMenuNavClick}>
+						<a href="/information" on:click={handleMenuNavClick} class="header__navigation-item">
 							Information
 						</a>
 					</li>
@@ -462,8 +477,8 @@
 		text-decoration: underline;
 	}
 
-	.mobile-hidden { 
-		display: none !important;
+	.hidden { 
+		display: none;
 	}
 
 	@media screen and (min-width: 800px) {
@@ -492,8 +507,8 @@
 			padding-top: 2rem;
 		}
 
-		.mobile-hidden { 
-			display: unset !important;
+		.hidden { 
+			display: unset;
 		}
 	}
 </style>
