@@ -283,7 +283,7 @@
 			{/if}
 		</div>
 
-		<div class="header__main-container" class:mobile-hidden={!isMenuOpen} bind:this={dropDownMenuEl}>
+		<div class="header__main-container" class:hidden={!isMenuOpen} bind:this={dropDownMenuEl}>
 			<div class="header__about">
 				<p>
 					AA was founded in 1847 with the aspiration of ‘promoting and affording facilities for the study of architecture for the public benefit’. Likeness it them very firmament without created also bring a one Whose she'd in. Sea unto created every together together. For that wherein. Kind sea earth them was place. Sixth signs saying after replenish multiply. Female every unto beginning appear moving tree the bearing own.
